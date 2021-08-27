@@ -1,0 +1,28 @@
+<div class="todo">
+  <p>Tasks: {{name}}</p>
+<ul>
+  <todoItem-comp *ngFor="let item of nonActiveItems"
+                 [item]="item"
+                 (onToggleActivity)="onToggle(item.id)"
+                 (removeItem)="removeItem(item.id)">
+  </todoItem-comp>
+</ul>
+<input type="text"
+       placeholder="Enter new task"
+       [(ngModel)]="name"
+       (keydown.enter)="addTodo()"
+/>
+<button class="add"
+        (click)="addTodo()">Add
+</button>
+<div class="line"></div>
+<p>Completed tasks:</p>
+<ul>
+  <todoItem-comp *ngFor="let item of activeItems"
+                 [item]="item"
+                 [class.isDone]="item.isDone"
+                 (onToggleActivity)="onToggle(item.id)"
+                 (removeItem)="removeItem(item.id)">
+  </todoItem-comp>
+</ul>
+</div>

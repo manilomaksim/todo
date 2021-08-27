@@ -1,0 +1,22 @@
+.delete {
+  background-color: red;
+  margin: 10px;
+}
+
+.checkbox {
+  margin-left: 10px;
+}
+
+.item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  border: solid 1px #111111;
+  margin: 5px;
+  padding-left: 5px;
+}
+
+.is-checked {
+  text-decoration: line-through;
+}
