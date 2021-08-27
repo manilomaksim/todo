@@ -1,0 +1,17 @@
+<li class="item">
+  <div>Date of creation: {{item.date | date: 'mediumTime'}}</div>
+  <div *ngIf="item.isDone">Date of completion: {{date | date: 'mediumTime'}}</div>
+  <input
+    class="checkbox"
+    type="checkbox"
+    [class.isChecked]="item.isDone"
+    [checked]="item.isDone"
+    (click)="toggle()"
+  />
+
+  {{item.text}}
+  <span>
+    <button class="delete"
+            (click)="delete()">&times;</button>
+  </span>
+</li>

@@ -1,0 +1,24 @@
+
+p { color: #1976d2}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.todo {
+  width: 400px;
+}
+
+.add {
+  margin: 10px;
+}
+
+.line {
+  border: solid 1px black;
+}
+
+.isDone {
+  text-decoration: line-through;
+  color: gray;
+}
