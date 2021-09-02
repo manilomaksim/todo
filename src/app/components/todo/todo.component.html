@@ -1,19 +1,20 @@
 <div class="todo">
-  <p>Tasks: {{name}}</p>
+  <p>Tasks:</p>
 <ul>
-  <todoItem-comp *ngFor="let item of nonActiveItems"
-                 [item]="item"
-                 (onToggleActivity)="onToggle(item.id)"
-                 (removeItem)="removeItem(item.id)">
+  <todoItem-comp
+    *ngFor="let item of nonActiveItems"
+    [item]="item"
+    (onTodoUpdate)="fetchTodos()"
+  >
   </todoItem-comp>
 </ul>
 <input type="text"
        placeholder="Enter new task"
        [(ngModel)]="name"
-       (keydown.enter)="addTodo()"
+       (keydown.enter)="addTodo(name)"
 />
 <button class="add"
-        (click)="addTodo()">Add
+        (click)="addTodo(name)" [disabled]="!name">Add
 </button>
 <div class="line"></div>
 <p>Completed tasks:</p>
@@ -21,8 +22,8 @@
   <todoItem-comp *ngFor="let item of activeItems"
                  [item]="item"
                  [class.isDone]="item.isDone"
-                 (onToggleActivity)="onToggle(item.id)"
-                 (removeItem)="removeItem(item.id)">
+                 (onTodoUpdate)="fetchTodos()"
+  >
   </todoItem-comp>
 </ul>
 </div>

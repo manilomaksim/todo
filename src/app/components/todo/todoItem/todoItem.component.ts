@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {TodoComponent} from '../todo.component';
+import {Todo} from '../../../interfaces/todo.interface';
+import {TodoService} from '../../../shared/todo.service';
 
 @Component({
   selector: "todoItem-comp",
@@ -8,17 +9,29 @@ import {TodoComponent} from '../todo.component';
 })
 
 export class TodoItemComponent {
-  @Input() item: any | undefined;
-  @Output() onToggleActivity = new EventEmitter<number>();
-  @Output() removeItem = new EventEmitter<number>();
-  date: number = Date.now();
+  @Input() item: Todo | undefined;
+  @Output() onTodoUpdate = new EventEmitter<number>();
+
+  constructor(public todoService: TodoService) {
+  }
 
   toggle() {
-    console.log(this.item, this.item.date);
-    this.onToggleActivity.emit(this.item.id)
+    if (!this.item) {
+      return;
+    }
+    this.todoService.toggleActivity(this.item._id, !this.item.isDone)
+      .subscribe((data) => {
+        this.onTodoUpdate.emit(this.item?._id);
+      });
   }
 
   delete() {
-    this.removeItem.emit(this.item.id)
+    if (!this.item) {
+      return;
     }
+    this.todoService.removeTodo(this.item._id)
+      .subscribe((data) => {
+        this.onTodoUpdate.emit(this.item?._id);
+      });
+  }
 }

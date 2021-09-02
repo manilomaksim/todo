@@ -1,6 +1,6 @@
-<li class="item">
-  <div>Date of creation: {{item.date | date: 'mediumTime'}}</div>
-  <div *ngIf="item.isDone">Date of completion: {{date | date: 'mediumTime'}}</div>
+<li class="item" *ngIf="item">
+  <div>Date of creation: {{item.createdAt | date: 'mediumTime'}}</div>
+  <div *ngIf="item.isDone">Date of completion: {{item.updatedAt | date: 'mediumTime'}}</div>
   <input
     class="checkbox"
     type="checkbox"
@@ -9,7 +9,7 @@
     (click)="toggle()"
   />
 
-  {{item.text}}
+  {{item.title}}
   <span>
     <button class="delete"
             (click)="delete()">&times;</button>

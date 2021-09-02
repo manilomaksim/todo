@@ -1,48 +1,41 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Todo} from '../../interfaces/todo.interface';
+import {TodoService} from '../../shared/todo.service';
 
 @Component({
   selector: "todo-comp",
   templateUrl: "todo.component.html",
   styleUrls: ["todo.component.scss"]
 })
-export class TodoComponent {
-  items: Todo[] = [
-    {id: 0, text: "aaa", isDone: false, date: new Date()},
-    {id: 1, text: "bbb", isDone: false, date: new Date()},
-    {id: 2, text: "ccc", isDone: false, date: new Date()}
-  ];
+export class TodoComponent implements OnInit{
   name = "";
+  items: Todo[] = [];
 
-  get activeItems() {
-    return this.items.filter(item => item.isDone);
+  constructor(public todoService: TodoService) {
   }
 
-  get nonActiveItems() {
-    return this.items.filter(item => !item.isDone);
+  ngOnInit() {
+    this.fetchTodos();
   }
 
-  addTodo() {
-    const todo: Todo = {
-      text: this.name,
-      id: this.items.length,
-      isDone: false,
-      date: new Date()
-    }
-    this.items.push(todo);
-    this.name = '';
+  fetchTodos(){
+    this.todoService.getTodos()
+      .subscribe((data) => this.items=data);
   }
 
-
-  onToggle(id: number){
-    this.items = this.items.map(item => {
-      return item.id === id
-        ? { ...item, isDone: !item.isDone }
-        : item;
-    })
+  get nonActiveItems(){
+    return this.items.filter((item) => !item.isDone);
   }
 
-  removeItem(id: number){
-    this.items = this.items.filter(item => item.id !== id);
+  get activeItems(){
+    return this.items.filter((item) => item.isDone);
   }
+
+  addTodo(title: string){
+    this.todoService.addTodo(title)
+      .subscribe(() => {
+        this.fetchTodos();
+      });
+  }
+
 }
