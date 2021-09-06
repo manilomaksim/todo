@@ -1,0 +1,36 @@
+<form class="sign-up" [formGroup]="registerForm">
+  <div class="sign-up__item">
+    <label class="sign-up__label">Email</label>
+    <input type="email"
+           class="sign-up__input"
+           formControlName="email"
+           [class.sign-up__is-invalid]="registerForm.controls.email.invalid"/>
+  </div>
+  <div class="sign-up__item">
+    <label class="sign-up__label">Password</label>
+    <input type="password"
+           class="sign-up__input"
+           formControlName="password"
+           [class.sign-up__is-invalid]="registerForm.controls.password.invalid"/>
+  </div>
+  <div class="sign-up__item">
+    <label class="sign-up__label">Confirm password</label>
+    <input type="password"
+           class="sign-up__input"
+           formControlName="confirmPassword"
+           [class.sign-up__is-invalid]="registerForm.controls.confirmPassword.invalid"/>
+  </div>
+  <div class="sign-up__item">
+    <span>
+      <input type="checkbox"
+             class="sign-up__accept"
+             formControlName="accept"
+      />I accept terms of use!
+    </span>
+  </div>
+  <button class="btn"
+          (click)="submit()"
+          [disabled]="registerForm.invalid"
+  >Send
+  </button>
+</form>

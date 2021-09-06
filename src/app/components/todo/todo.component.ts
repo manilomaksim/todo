@@ -36,6 +36,7 @@ export class TodoComponent implements OnInit{
       .subscribe(() => {
         this.fetchTodos();
       });
+    this.name="";
   }
 
 }

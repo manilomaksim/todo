@@ -1,0 +1,31 @@
+.sign-up{
+  display: flex;
+  flex-direction: column;
+  &__item{
+    margin: 10px;
+  }
+  &__label{
+    display: block;
+    margin-bottom: 5px;
+    color: #1976d2;
+  }
+  &__accept{
+    margin: 5px;
+  }
+  &__input{
+
+  }
+  &__is-invalid{
+    &:focus{
+      outline:none;
+      border: solid red;
+    }
+  }
+}
+.btn{
+  height: 35px;
+  width: 70px;
+  margin: 10px;
+  background-color: #1976d2;
+  color: #fff;
+}
