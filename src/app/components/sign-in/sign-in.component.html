@@ -1,36 +1,33 @@
-<form class="sign-up" [formGroup]="registerForm">
-  <div class="sign-up__item">
-    <label class="sign-up__label">Email</label>
-    <input type="email"
-           class="sign-up__input"
-           formControlName="email"
-           [class.sign-up__is-invalid]="registerForm.controls.email.invalid"/>
+<form class="sign-in" [formGroup]="loginForm">
+  <div class="sign-in__item">
+    <label class="sign-in__label">Login</label>
+    <input type="text"
+           class="sign-in__input"
+           placeholder="Enter your login"
+           formControlName="login"
+           [class.sign-in__is-invalid]="loginForm.controls.login.invalid"
+    />
+    <p *ngIf="isNotExist"
+       class="sign-in__error"
+    >Login does not exist
+    </p>
   </div>
-  <div class="sign-up__item">
-    <label class="sign-up__label">Password</label>
+  <div class="sign-in__item">
+    <label class="sign-in__label">Password</label>
     <input type="password"
-           class="sign-up__input"
+           class="sign-in__input"
+           placeholder="Enter your password"
            formControlName="password"
-           [class.sign-up__is-invalid]="registerForm.controls.password.invalid"/>
+           [class.sign-in__is-invalid]="loginForm.controls.password.invalid"
+    />
+    <p *ngIf="isIncorrect"
+       class="sign-in__error"
+    >Password incorrect
+    </p>
   </div>
-  <div class="sign-up__item">
-    <label class="sign-up__label">Confirm password</label>
-    <input type="password"
-           class="sign-up__input"
-           formControlName="confirmPassword"
-           [class.sign-up__is-invalid]="registerForm.controls.confirmPassword.invalid"/>
-  </div>
-  <div class="sign-up__item">
-    <span>
-      <input type="checkbox"
-             class="sign-up__accept"
-             formControlName="accept"
-      />I accept terms of use!
-    </span>
-  </div>
-  <button class="btn"
+  <button class="sign-in__btn btn"
           (click)="submit()"
-          [disabled]="registerForm.invalid"
-  >Send
+          [disabled]="loginForm.invalid"
+  >Sign in
   </button>
 </form>

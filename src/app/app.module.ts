@@ -8,6 +8,7 @@ import {TodoComponent} from './components/todo/todo.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TodoItemComponent} from './components/todo/todoItem/todoItem.component';
 import { NavComponent } from './components/nav/nav.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     TodoComponent,
     TodoItemComponent,
     NavComponent,
+    SignUpComponent,
     SignInComponent
   ],
     imports: [

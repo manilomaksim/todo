@@ -1,4 +1,4 @@
-.sign-in{
+.sign-up{
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -9,6 +9,9 @@
     display: block;
     margin-bottom: 5px;
     color: #1976d2;
+  }
+  &__accept{
+    margin: 5px;
   }
   &__input{
 
@@ -27,9 +30,4 @@
     background-color: #1976d2;
     color: #fff;
   }
-  &__error{
-    color: red;
-    margin: 0 0;
-  }
 }
-

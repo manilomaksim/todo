@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import {catchError, map, retry} from 'rxjs/operators';
-import {Todo} from '../interfaces/todo.interface';
-import {GetTodosRes} from '../interfaces/get-todos-res.service';
-import {PostTodosRes} from '../interfaces/post-todos-res.service';
-import {PutTodosRes} from '../interfaces/put-todos-res.service';
-import {DeleteTodosRes} from '../interfaces/delete-todos-res.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Todo} from '../interfaces/todo.interface';
+import { GetTodosRes } from '../interfaces/get-todos-res.service';
+import { PostTodosRes } from '../interfaces/post-todos-res.service';
+import { PutTodosRes } from '../interfaces/put-todos-res.service';
+import { DeleteTodosRes } from '../interfaces/delete-todos-res.service';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
