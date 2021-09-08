@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {UsersService} from '../../shared/users.service';
+import {UsersService} from '../../shared/services/users.service';
 
 export function MatchingValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -37,10 +37,6 @@ export class SignUpComponent {
         validator: MatchingValidator('password', "confirmPassword")
       });
   }
-
-  /*submit(){
-    console.log(this.registerForm.value);
-  }*/
 
   addUser(email: string, password: string){
     this.usersService.addUser(email, password)

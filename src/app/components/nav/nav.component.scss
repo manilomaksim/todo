@@ -1,3 +1,60 @@
 .nav{
+  display: flex;
+  flex-wrap: nowrap;
   background-color: #e6e6e6;
+  &__grow{
+    flex-grow: 1;
+    text-align: right;
+  }
+  &__dropdown {
+    height: 2.5rem;
+    list-style-type: none;
+    padding: 0;
+    & li {
+      visibility: hidden;
+      position: relative;
+      z-index: 10;
+      margin: 0;
+      padding: 0;
+      background-color: #1976d2;
+      border-right: 1px solid #1976d2;
+      border-left: 1px solid #1976d2;
+      & a {
+        display: block;
+        height: 2.5rem;
+        line-height: 2.5rem;
+        padding: 0rem 1rem;
+        color: white;
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:active {
+          font-size: 0.8em;
+          background-color: rgb(27, 214, 188, 0.1);
+        }
+      }
+      &:first-of-type{
+        visibility: visible;
+        border-top: 1px solid #1976d2;
+        border-radius: 0.3rem;
+        transition: background-color 200ms;
+      }
+      &:last-of-type{
+        border-bottom: 1px solid #1976d2;
+        border-bottom-left-radius: 0.3rem;
+        border-bottom-right-radius: 0.3rem;
+      }
+      &:hover {
+        background-color: white;
+        z-index: 15;
+        & a {
+          color: #1976d2;
+        }
+      }
+    }
+    &:hover li {
+      visibility: visible;
+    }
+  }
 }

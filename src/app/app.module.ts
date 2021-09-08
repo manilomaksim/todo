@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import {TodoItemComponent} from './components/todo/todoItem/todoItem.component';
 import { NavComponent } from './components/nav/nav.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import {InterceptorService} from './shared/interceptors/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,13 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
         HttpClientModule,
         ReactiveFormsModule
     ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
