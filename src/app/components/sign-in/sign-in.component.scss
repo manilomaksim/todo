@@ -10,13 +10,10 @@
     margin-bottom: 5px;
     color: #1976d2;
   }
-  &__input{
-
-  }
+  &__input{ }
   &__is-invalid{
     &:focus{
       outline:none;
-      border: solid red;
     }
   }
   &__btn{

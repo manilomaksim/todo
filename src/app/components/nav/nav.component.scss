@@ -6,6 +6,15 @@
     flex-grow: 1;
     text-align: right;
   }
+  &__menu {
+    background-color: #1976d2;
+    border-right: 1px solid #1976d2;
+    border-left: 1px solid #1976d2;
+    color: white;
+  }
+  &__menu-item {
+    color: #1976d2;
+  }
   &__dropdown {
     height: 2.5rem;
     list-style-type: none;

@@ -1,25 +1,32 @@
 <form class="sign-in" [formGroup]="loginForm">
   <div class="sign-in__item">
-    <label class="sign-in__label">Login</label>
-    <input type="text"
+    <mat-form-field>
+    <mat-label>Login</mat-label>
+    <input matInput
+           type="text"
            class="sign-in__input"
            placeholder="Enter your login"
+           autocomplete="off"
            formControlName="login"
            [class.sign-in__is-invalid]="loginForm.controls.login.invalid"
     />
+    </mat-form-field>
     <p *ngIf="isNotExist"
        class="sign-in__error"
     >Login does not exist
     </p>
   </div>
   <div class="sign-in__item">
-    <label class="sign-in__label">Password</label>
-    <input type="password"
+    <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput
+           type="password"
            class="sign-in__input"
            placeholder="Enter your password"
            formControlName="password"
            [class.sign-in__is-invalid]="loginForm.controls.password.invalid"
     />
+    </mat-form-field>
     <p *ngIf="isIncorrect"
        class="sign-in__error"
     >Password incorrect

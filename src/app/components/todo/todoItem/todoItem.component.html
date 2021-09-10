@@ -1,17 +1,23 @@
-<li class="item" *ngIf="item">
-  <div>Date of creation: {{item.createdAt | date: 'mediumTime'}}</div>
-  <div *ngIf="item.isDone">Date of completion: {{item.updatedAt | date: 'mediumTime'}}</div>
-  <input
-    class="checkbox"
-    type="checkbox"
-    [class.isChecked]="item.isDone"
-    [checked]="item.isDone"
-    (click)="toggle()"
-  />
+<mat-card class="cards">
+  <li class="cards__item" *ngIf="item">
+    <div>
+      Date of creation: {{item.createdAt | date: 'mediumTime'}}
+    </div>
+    <div *ngIf="item.isDone">
+      Date of completion: {{item.updatedAt | date: 'mediumTime'}}
+    </div>
+    <input class="cards__checkbox"
+           type="checkbox"
+           [class.cards__isChecked]="item.isDone"
+           [checked]="item.isDone"
+           (click)="toggle()"
+    />
 
-  {{item.title}}
-  <span>
-    <button class="delete"
-            (click)="delete()">&times;</button>
-  </span>
-</li>
+    {{item.title}}
+    <span>
+      <button mat-raised-button color="warn"
+              class="cards__delete"
+              (click)="delete()">&times;</button>
+    </span>
+    </li>
+</mat-card>

@@ -1,29 +1,59 @@
-<div class="todo">
-  <p>Tasks:</p>
-<ul>
-  <todoItem-comp
-    *ngFor="let item of nonActiveItems"
-    [item]="item"
-    (onTodoUpdate)="fetchTodos()"
-  >
+<div class="todo" cdkDropListGroup>
+  <div class="todo__items">
+  <p class="todo__label">Tasks:</p>
+<ul class="todo__list"
+    cdkDropList
+    [cdkDropListData]="items"
+    (cdkDropListDropped)="drop($event)"
+>
+  <todoItem-comp *ngFor="let item of nonActiveItems"
+                 [item]="item"
+                 (onTodoUpdate)="fetchTodos()"
+                 cdkDrag
+                 (cdkDragStarted)="dragStarted($event)"
+                 (cdkDragEnded)="dragEnded($event)"
+                 [cdkDragData]="item">
   </todoItem-comp>
 </ul>
-<input type="text"
-       placeholder="Enter new task"
-       [(ngModel)]="name"
-       (keydown.enter)="addTodo(name)"
-/>
-<button class="add"
+  <div class="todo__input">
+  <mat-form-field>
+  <mat-label>New task</mat-label>
+  <input matInput
+         type="text"
+         placeholder="Enter new task"
+         autocomplete="off"
+         [(ngModel)]="name"
+         (keydown.enter)="addTodo(name)"
+  />
+  </mat-form-field>
+  <button mat-raised-button class="todo__add"
         (click)="addTodo(name)" [disabled]="!name">Add
-</button>
-<div class="line"></div>
-<p>Completed tasks:</p>
-<ul>
+  </button>
+  </div>
+<div class="todo__line"></div>
+<p class="todo__label">Completed tasks:</p>
+<ul class="todo__list"
+    cdkDropList
+    [cdkDropListData]="items"
+    (cdkDropListDropped)="drop($event)"
+>
   <todoItem-comp *ngFor="let item of activeItems"
                  [item]="item"
-                 [class.isDone]="item.isDone"
+                 [class.todo-done]="item.isDone"
                  (onTodoUpdate)="fetchTodos()"
-  >
+                 cdkDrag
+                 (cdkDragStarted)="dragStarted($event)"
+                 (cdkDragEnded)="dragEnded($event)"
+                 [cdkDragData]="item">
   </todoItem-comp>
 </ul>
+  </div>
+  <div class="todo__trash"
+       cdkDropList
+       (cdkDropListDropped)="removeDropItem($event)">
+    <mat-icon *ngIf="isDragging"
+              class="todo__trash-icon"
+              aria-hidden="false">delete
+    </mat-icon>
+  </div>
 </div>

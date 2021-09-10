@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Todo} from '../../../interfaces/todo.interface';
 import {TodoService} from '../../../shared/services/todo.service';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "todoItem-comp",

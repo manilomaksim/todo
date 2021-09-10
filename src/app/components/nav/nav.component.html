@@ -8,10 +8,16 @@
     </li>
     <li class="nav-item">
       <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/sign-up">Sign up</a>
-      <ul *ngIf="isLoggedIn" class="nav__dropdown">
-        <li><a class="nav-link">{{email}}</a></li>
-        <li><a (click)="logOut()" routerLink="/sign-in">Log out</a></li>
-      </ul>
+      <button *ngIf="isLoggedIn"
+              mat-button [matMenuTriggerFor]="menu"
+              class="nav__menu"
+      >{{email}}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button class="nav__menu-item" mat-menu-item (click)="logOut()" routerLink="/sign-in">
+          <mat-icon aria-hidden="false">exit_to_app</mat-icon>Log out
+        </button>
+      </mat-menu>
     </li>
   </ul>
 </nav>

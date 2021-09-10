@@ -1,24 +1,63 @@
-
-p { color: #1976d2}
-
-ul {
-  margin: 0;
-  padding: 0;
+.todo{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  &__label {
+    color: #1976d2;
+  }
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+  &__items {
+    justify-content: center;
+    width: 400px;
+    height: 100vh;
+    margin: 20px;
+  }
+  &__add {
+    margin: 15px;
+  }
+  &__input {
+    display: flex;
+    flex-direction: row;
+  }
+  &__line {
+    border: solid 1px black;
+  }
+  &-done {
+    text-decoration: line-through;
+    color: gray;
+  }
+  &__trash {
+    display: flex;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
+  }
+  &__trash-icon {
+    font-size: 90px;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+  }
 }
-
-.todo {
-  width: 400px;
+.cdk-drag-placeholder {
+  display: none;
 }
-
-.add {
-  margin: 10px;
+.cdk-drop-list {
+  min-height: 80px;
 }
-
-.line {
-  border: solid 1px black;
+.cdk-drop-list-dragging {
+  cursor: grabbing;
 }
-
-.isDone {
-  text-decoration: line-through;
-  color: gray;
+#cdk-drop-list-2.cdk-drop-list-dragging{
+  background-color: red;
+  opacity: 0.5;
 }
