@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {UsersService} from '../../shared/services/users.service';
+import {Router} from '@angular/router';
 
 export function MatchingValidator(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -26,7 +27,9 @@ export function MatchingValidator(controlName: string, matchingControlName: stri
 export class SignUpComponent {
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private usersService: UsersService) {
+  constructor(private formBuilder: FormBuilder,
+              private usersService: UsersService,
+              private route: Router) {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -44,6 +47,7 @@ export class SignUpComponent {
         console.log("Successfuly added user!");
       });
     this.registerForm.reset();
+    this.route.navigate(['/sign-in']);
   }
 
 }

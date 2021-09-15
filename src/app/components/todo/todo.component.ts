@@ -6,6 +6,7 @@ import {
   CdkDragStart,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
+import {AuthService} from '../../shared/services/auth.service';
 
 @Component({
   selector: "todo-comp",
@@ -17,14 +18,23 @@ export class TodoComponent implements OnInit{
   items: Todo[] = [];
   isDragging = false;
 
-  constructor(public todoService: TodoService) { }
+  constructor(private todoService: TodoService,
+              private authService: AuthService)
+  { }
 
   ngOnInit() {
-    this.fetchTodos();
+    //this.fetchTodos();
+    this.fetchUserTodos();
   }
 
-  fetchTodos(){
+  /*fetchTodos(){
     this.todoService.getTodos()
+      .subscribe((data) => this.items=data);
+  }*/
+
+  fetchUserTodos(){
+    const userId = this.authService.getUser('_id');
+    this.todoService.getUserTodos(Number(userId))
       .subscribe((data) => this.items=data);
   }
 
@@ -37,9 +47,11 @@ export class TodoComponent implements OnInit{
   }
 
   addTodo(title: string){
-    this.todoService.addTodo(title)
+    const userId = this.authService.getUser('_id');
+    this.todoService.addTodo(title, Number(userId))
       .subscribe(() => {
-        this.fetchTodos();
+        //this.fetchTodos();
+        this.fetchUserTodos();
       });
     this.name="";
   }
@@ -56,7 +68,8 @@ export class TodoComponent implements OnInit{
       event.currentIndex);
     this.todoService.toggleActivity(item._id, !item.isDone)
       .subscribe(() => {
-        this.fetchTodos();
+        //this.fetchTodos();
+        this.fetchUserTodos();
       });
   }
 
@@ -65,7 +78,8 @@ export class TodoComponent implements OnInit{
 
     this.todoService.removeTodo(item._id)
       .subscribe(() => {
-        this.fetchTodos();
+        //this.fetchTodos();
+        this.fetchUserTodos();
       });
   }
 

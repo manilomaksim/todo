@@ -19,8 +19,13 @@ export class TodoService {
       map((data: GetTodosRes) => data.todos));
   }
 
-  addTodo(title: string): Observable<PostTodosRes> {
-    const body = { title };
+  getUserTodos(id: number): Observable<Todo[]>{
+    return this.http.get<GetTodosRes>(this.URL).pipe(
+      map((data: GetTodosRes) => data.todos));
+  }
+
+  addTodo(title: string, userId: number): Observable<PostTodosRes> {
+    const body = { title, userId };
     return this.http.post<PostTodosRes>(this.URL, body);
   }
 

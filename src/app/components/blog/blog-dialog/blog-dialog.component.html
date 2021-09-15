@@ -1,0 +1,48 @@
+<form class="dialog-article" [formGroup]="articleForm">
+  <div mat-dialog-content class="dialog-article__content">
+    <mat-spinner *ngIf="false" class="dialog-article__loader"></mat-spinner>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput
+             type="text"
+             placeholder="Enter new title"
+             autocomplete="off"
+             formControlName="title"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let tag of tags"
+                  [selectable]="true"
+                  [removable]="true"
+                  (removed)="removeTag(tag)">{{tag}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="New tag..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="addTag($event)"
+               formControlName="tags"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Text</mat-label>
+      <textarea matInput
+                type="text"
+                autocomplete="off"
+                formControlName="text">
+        </textarea>
+    </mat-form-field>
+  </div>
+<div mat-dialog-actions class="dialog-article__btn">
+  <button mat-button (click)="onNoClick()">No thanks
+  </button>
+  <button mat-raised-button
+          (click)="addArticle()"
+          [disabled]="articleForm.invalid">Add
+  </button>
+</div>
+</form>

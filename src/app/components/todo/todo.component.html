@@ -8,7 +8,7 @@
 >
   <todoItem-comp *ngFor="let item of nonActiveItems"
                  [item]="item"
-                 (onTodoUpdate)="fetchTodos()"
+                 (onTodoUpdate)="fetchUserTodos()"
                  cdkDrag
                  (cdkDragStarted)="dragStarted($event)"
                  (cdkDragEnded)="dragEnded($event)"
@@ -40,7 +40,7 @@
   <todoItem-comp *ngFor="let item of activeItems"
                  [item]="item"
                  [class.todo-done]="item.isDone"
-                 (onTodoUpdate)="fetchTodos()"
+                 (onTodoUpdate)="fetchUserTodos()"
                  cdkDrag
                  (cdkDragStarted)="dragStarted($event)"
                  (cdkDragEnded)="dragEnded($event)"

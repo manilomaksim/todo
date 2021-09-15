@@ -1,0 +1,20 @@
+.articles{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  &__list {
+    margin: 0;
+    padding: 0;
+  }
+  &__items {
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 20px;
+  }
+  &__fab {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+  }
+}

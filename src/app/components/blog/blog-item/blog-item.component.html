@@ -1,0 +1,28 @@
+<mat-card class="articles">
+  <li class="articles__item" *ngIf="article">
+    <div class="articles__text">
+      <mat-card-title  class="articles__title">
+        {{article.title}}
+      </mat-card-title>
+    </div>
+    <div class="articles__text">
+      <mat-card-content class="articles__preview">
+        {{article.text}}
+      </mat-card-content>
+    </div>
+    <div class="articles__text">
+      <p class="articles__tags">
+        Tags: {{article.tags}}
+      </p>
+    </div>
+    <div class="articles__text">
+      <p class="articles__author">
+        Author: {{article.userId}}
+      </p>
+    </div>
+      <button mat-raised-button
+              class="articles__read-blog"
+      >Read
+      </button>
+  </li>
+</mat-card>

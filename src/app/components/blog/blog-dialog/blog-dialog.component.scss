@@ -1,0 +1,25 @@
+.dialog-article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  &__content {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  &__btn {
+    margin: 5px;
+  }
+  &__loader {
+    display: block;
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+  }
+}
+

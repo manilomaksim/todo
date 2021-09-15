@@ -1,0 +1,15 @@
+<div class="articles">
+  <div class="articles__items">
+    <ul class="articles__list">
+      <blog-item-comp *ngFor="let article of articles"
+                      [article]="article">
+      </blog-item-comp>
+    </ul>
+  </div>
+  <div class="articles__fab">
+    <button mat-fab color="warn"
+            (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
