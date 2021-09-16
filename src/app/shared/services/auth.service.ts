@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PostAuthRes } from '../../interfaces/post-auth-res.interface';
+import { PostAuthRes } from '../../interfaces/user/post-auth-res.interface';
 import { Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
-import {User} from '../../interfaces/user.interface';
+import {User} from '../../interfaces/user/user.interface';
 
 @Injectable({
   providedIn: 'root'

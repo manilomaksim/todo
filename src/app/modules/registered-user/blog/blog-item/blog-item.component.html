@@ -2,22 +2,24 @@
   <li class="articles__item" *ngIf="article">
     <div class="articles__text">
       <mat-card-title  class="articles__title">
-        {{article.title}}
+        {{ article.title }}
       </mat-card-title>
     </div>
     <div class="articles__text">
       <mat-card-content class="articles__preview">
-        {{article.text}}
+        <p>
+          {{ article.text | slice: 0:100 }}
+        </p>
       </mat-card-content>
     </div>
     <div class="articles__text">
       <p class="articles__tags">
-        Tags: {{article.tags}}
+        Tags: {{ article.tags }}
       </p>
     </div>
     <div class="articles__text">
       <p class="articles__author">
-        Author: {{article.userId}}
+        Author: {{ article.userInfo.email }}
       </p>
     </div>
       <button mat-raised-button

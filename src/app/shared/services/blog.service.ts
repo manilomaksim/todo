@@ -2,11 +2,11 @@ import {Injectable, Input} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Article} from '../../interfaces/article.interface';
-import {GetArticlesRes} from '../../interfaces/get-articles-res.interface';
-import {PostArticlesRes} from '../../interfaces/post-articles-res.interface';
+import {Article} from '../../interfaces/blog/article.interface';
+import {GetArticlesRes} from '../../interfaces/blog/get-articles-res.interface';
+import {PostArticlesRes} from '../../interfaces/blog/post-articles-res.interface';
 import {addAriaReferencedId} from '@angular/cdk/a11y/aria-describer/aria-reference';
-import {CreateArticle} from '../../interfaces/create-article.interface';
+import {CreateArticle} from '../../interfaces/blog/create-article.interface';
 
 @Injectable({
   providedIn: 'root'

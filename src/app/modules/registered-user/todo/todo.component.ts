@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Todo} from '../../interfaces/todo.interface';
-import {TodoService} from '../../shared/services/todo.service';
+import {Todo} from '../../../interfaces/todo/todo.interface';
+import {TodoService} from '../../../shared/services/todo.service';
 import {
   CdkDragDrop, CdkDragEnd,
   CdkDragStart,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
-import {AuthService} from '../../shared/services/auth.service';
+import {AuthService} from '../../../shared/services/auth.service';
 
 @Component({
   selector: "todo-comp",

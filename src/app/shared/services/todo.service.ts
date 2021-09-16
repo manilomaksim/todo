@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Todo} from '../../interfaces/todo.interface';
-import { GetTodosRes } from '../../interfaces/get-todos-res.interface';
-import { PostTodosRes } from '../../interfaces/post-todos-res.interface';
-import { PutTodosRes } from '../../interfaces/put-todos-res.interface';
-import { DeleteTodosRes } from '../../interfaces/delete-todos-res.interface';
+import { Todo} from '../../interfaces/todo/todo.interface';
+import { GetTodosRes } from '../../interfaces/todo/get-todos-res.interface';
+import { PostTodosRes } from '../../interfaces/todo/post-todos-res.interface';
+import { PutTodosRes } from '../../interfaces/todo/put-todos-res.interface';
+import { DeleteTodosRes } from '../../interfaces/todo/delete-todos-res.interface';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {

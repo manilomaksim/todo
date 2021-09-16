@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../shared/services/auth.service';
+import {AuthService} from '../../../shared/services/auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -32,7 +32,7 @@ export class SignInComponent {
         if(data.token){
           this.authService.setToken(data);
           this.loginForm.reset();
-          this.route.navigate(['/todos']);
+          this.route.navigate(['../user/todos']);
         } else this.isIncorrect = true;
       }, (error) => {
         if (error.status === 401) {

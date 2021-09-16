@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Article} from '../../interfaces/article.interface';
+import {Article} from '../../../interfaces/blog/article.interface';
 import {MatDialog} from '@angular/material/dialog';
 import {BlogDialogComponent} from './blog-dialog/blog-dialog.component';
-import {AuthService} from '../../shared/services/auth.service';
-import {BlogService} from '../../shared/services/blog.service';
+import {AuthService} from '../../../shared/services/auth.service';
+import {BlogService} from '../../../shared/services/blog.service';
 import {take} from 'rxjs/operators';
 
 @Component({

@@ -14,7 +14,7 @@ export class GuestGuardService implements CanActivate{
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot) : Observable<boolean> | boolean {
     if(this.authService.token){
-      this.route.navigate(['/todos']);
+      this.route.navigate(['user/todos']);
     }
     return true;
   }

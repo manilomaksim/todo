@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Article} from '../../../interfaces/article.interface';
+import {Article} from '../../../../interfaces/blog/article.interface';
 
 @Component({
   selector: 'blog-item-comp',

@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {UsersService} from '../../shared/services/users.service';
+import {UsersService} from '../../../shared/services/users.service';
 import {Router} from '@angular/router';
 
 export function MatchingValidator(controlName: string, matchingControlName: string) {

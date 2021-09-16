@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {DialogData} from '../../../interfaces/dialog-data.interface';
-import {AuthService} from '../../../shared/services/auth.service';
-import {BlogService} from '../../../shared/services/blog.service';
+import {DialogData} from '../../../../interfaces/blog/dialog-data.interface';
+import {AuthService} from '../../../../shared/services/auth.service';
+import {BlogService} from '../../../../shared/services/blog.service';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CreateArticle} from '../../../interfaces/create-article.interface';
+import {CreateArticle} from '../../../../interfaces/blog/create-article.interface';
 
 @Component({
   selector: 'app-blog-dialog',
