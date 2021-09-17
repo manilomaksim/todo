@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Article} from '../../../../interfaces/blog/article.interface';
+import {BlogService} from '../../../../shared/services/blog.service';
 
 @Component({
   selector: 'blog-item-comp',

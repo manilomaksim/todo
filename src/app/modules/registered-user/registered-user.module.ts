@@ -17,10 +17,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {ArticleComponent} from './blog/article/article.component';
 
 const routes: Routes = [
   { path: 'todos', component: TodoComponent, canActivate: [AuthGuardService] },
   { path: 'blog', component: BlogComponent, canActivate: [AuthGuardService]},
+  { path: 'blog/:id', component: ArticleComponent, canActivate: [AuthGuardService]},
   { path: '**', redirectTo: 'todos' }
 ];
 
@@ -31,6 +33,7 @@ const routes: Routes = [
     BlogDialogComponent,
     TodoComponent,
     TodoItemComponent,
+    ArticleComponent,
   ],
   imports: [
     CommonModule,

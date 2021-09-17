@@ -1,0 +1,11 @@
+.article {
+  margin: 15px;
+  padding: 0;
+  &__title {
+    text-align: center;
+  }
+  &__text {
+    text-indent: 35px;
+    text-align: justify;
+  }
+}

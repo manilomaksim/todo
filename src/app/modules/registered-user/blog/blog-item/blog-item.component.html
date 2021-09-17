@@ -8,7 +8,7 @@
     <div class="articles__text">
       <mat-card-content class="articles__preview">
         <p>
-          {{ article.text | slice: 0:100 }}
+          {{ article.text | slice: 0:180 }}...
         </p>
       </mat-card-content>
     </div>
@@ -22,9 +22,10 @@
         Author: {{ article.userInfo.email }}
       </p>
     </div>
-      <button mat-raised-button
-              class="articles__read-blog"
+      <a mat-raised-button
+         class="articles__read-blog"
+         [routerLink]="[article._id]"
       >Read
-      </button>
+      </a>
   </li>
 </mat-card>

@@ -5,8 +5,8 @@ import {map} from 'rxjs/operators';
 import {Article} from '../../interfaces/blog/article.interface';
 import {GetArticlesRes} from '../../interfaces/blog/get-articles-res.interface';
 import {PostArticlesRes} from '../../interfaces/blog/post-articles-res.interface';
-import {addAriaReferencedId} from '@angular/cdk/a11y/aria-describer/aria-reference';
 import {CreateArticle} from '../../interfaces/blog/create-article.interface';
+import {GetArticleRes} from '../../interfaces/blog/get-article-res.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,12 @@ export class BlogService {
   getArticles(): Observable<Article[]>{
     return this.http.get<GetArticlesRes>(this.URL).pipe(
       map((data: GetArticlesRes) => data.articles));
+  }
+
+  getArticle(id: number): Observable<Article>{
+    const url = this.URL + "/" + id;
+    return this.http.get<GetArticleRes>(url).pipe(
+      map((data: GetArticleRes) => data.article));
   }
 
   addArticle(article: CreateArticle): Observable<PostArticlesRes> {
