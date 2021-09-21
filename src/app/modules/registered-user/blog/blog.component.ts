@@ -13,10 +13,15 @@ import {take} from 'rxjs/operators';
 })
 
 export class BlogComponent implements OnInit {
-  title = "";
-  text = "";
+  title: string = "";
+  text: string = "";
   tags: string[] = [];
   articles: Article[] = [];
+  skip: number = 0;
+  readonly limit: number = 4;
+  hasNextPage: boolean = false;
+  totalCount: number = 0;
+  skipped: number = 0;
 
   constructor(public dialog: MatDialog,
               private authService: AuthService,
@@ -24,12 +29,18 @@ export class BlogComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    this.fetchArticles();
+    this.fetchArticles(this.skip, this.limit);
   }
 
-  fetchArticles(){
-    this.blogService.getArticles()
-      .subscribe((data) => this.articles=data);
+  fetchArticles(skip: number, limit: number){
+    this.blogService.getArticles(skip, limit)
+      .subscribe((data) => {
+        this.articles = [...this.articles, ...data.articles];
+        this.skip += this.limit;
+        this.totalCount = data.totalCount;
+        this.skipped = data.skipped;
+        this.hasNextPage = data.hasNextPage;
+      });
   }
 
   openDialog(): void {
@@ -41,16 +52,19 @@ export class BlogComponent implements OnInit {
     dialogRef.componentInstance.onSuccess$
       .pipe(take(1))
       .subscribe(() => {
-        this.fetchArticles();
+        this.fetchArticles(this.skip, this.limit);
       })
 
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.title = result.title;
       this.text = result.text;
       this.tags = result.tags;
-      this.fetchArticles();
+      this.fetchArticles(this.skip, this.limit);
     });
+  }
+
+  onScrollDown() {
+    this.fetchArticles(this.skip, this.limit);
   }
 }

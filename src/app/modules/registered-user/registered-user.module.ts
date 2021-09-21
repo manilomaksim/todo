@@ -18,6 +18,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {ArticleComponent} from './blog/article/article.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 const routes: Routes = [
   { path: 'todos', component: TodoComponent, canActivate: [AuthGuardService] },
@@ -33,7 +34,7 @@ const routes: Routes = [
     BlogDialogComponent,
     TodoComponent,
     TodoItemComponent,
-    ArticleComponent,
+    ArticleComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +49,8 @@ const routes: Routes = [
     DragDropModule,
     MatChipsModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    InfiniteScrollModule
   ],
   exports: [RouterModule]
 })

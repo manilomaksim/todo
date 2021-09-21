@@ -1,4 +1,4 @@
-import {Injectable, Input} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -16,9 +16,10 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
-  getArticles(): Observable<Article[]>{
-    return this.http.get<GetArticlesRes>(this.URL).pipe(
-      map((data: GetArticlesRes) => data.articles));
+  getArticles(skip: number, limit: number): Observable<GetArticlesRes>{
+    const params = { skip, limit };
+
+    return this.http.get<GetArticlesRes>(this.URL, { params });
   }
 
   getArticle(id: number): Observable<Article>{

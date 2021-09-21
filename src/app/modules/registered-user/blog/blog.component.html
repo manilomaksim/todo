@@ -1,10 +1,20 @@
 <div class="articles">
   <div class="articles__items">
-    <ul class="articles__list">
+    <ul class="articles__list"
+        infiniteScroll
+        [infiniteScrollDistance]="0.5"
+        [infiniteScrollUpDistance]="9.5"
+        [infiniteScrollThrottle]="150"
+        [infiniteScrollDisabled]="!hasNextPage"
+        (scrolled)="onScrollDown()"
+    >
       <blog-item-comp *ngFor="let article of articles"
                       [article]="article">
       </blog-item-comp>
     </ul>
+  </div>
+  <div class="articles__total-count">
+    <p>Articles: {{articles.length}}/{{totalCount}}</p>
   </div>
   <div class="articles__fab">
     <button mat-fab color="warn"
