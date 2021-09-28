@@ -12,10 +12,10 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<User[]>{
-    return this.http.get<GetUsersRes>(this.URL).pipe(
-      map((data: GetUsersRes) => data.users));
-  }
+  // getUsers(): Observable<User[]>{
+  //   return this.http.get<GetUsersRes>(this.URL).pipe(
+  //     map((data: GetUsersRes) => data.users));
+  // }
 
   addUser(email: string, password: string): Observable<PostUsersRes> {
     const body = { email, password };

@@ -19,6 +19,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {ArticleComponent} from './blog/article/article.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {StoreModule} from '@ngrx/store';
+import {todoReducer} from '../../store/reducers/todo.reducer';
+import {EffectsModule, USER_PROVIDED_EFFECTS} from '@ngrx/effects';
+import {TodoEffects} from '../../store/effects/todo.effects';
 
 const routes: Routes = [
   { path: 'todos', component: TodoComponent, canActivate: [AuthGuardService] },
@@ -50,7 +54,9 @@ const routes: Routes = [
     MatChipsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    StoreModule.forRoot({ todos: todoReducer }),
+    EffectsModule.forRoot([TodoEffects])
   ],
   exports: [RouterModule]
 })

@@ -6,7 +6,7 @@
     [cdkDropListData]="items"
     (cdkDropListDropped)="drop($event)"
 >
-  <todoItem-comp *ngFor="let item of nonActiveItems"
+  <todoItem-comp *ngFor="let item of nonActiveItems$ | async"
                  [item]="item"
                  (onTodoUpdate)="fetchUserTodos()"
                  cdkDrag
@@ -37,7 +37,7 @@
     [cdkDropListData]="items"
     (cdkDropListDropped)="drop($event)"
 >
-  <todoItem-comp *ngFor="let item of activeItems"
+  <todoItem-comp *ngFor="let item of activeItems$ | async"
                  [item]="item"
                  [class.todo-done]="item.isDone"
                  (onTodoUpdate)="fetchUserTodos()"

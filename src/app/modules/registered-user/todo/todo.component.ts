@@ -7,6 +7,11 @@ import {
   transferArrayItem
 } from '@angular/cdk/drag-drop';
 import {AuthService} from '../../../shared/services/auth.service';
+import {select, Store} from '@ngrx/store';
+import {selectActiveTodos, selectNonActiveTodos, selectTodos} from '../../../store/selectors/todo.selector';
+import {addTodo, getTodos, getTodosSuccess, removeTodo, toggleActivity} from '../../../store/actions/todo.actions';
+import {Observable} from 'rxjs';
+import {IAppState} from '../../../store/state/app.state';
 
 @Component({
   selector: "todo-comp",
@@ -17,70 +22,69 @@ export class TodoComponent implements OnInit{
   name = "";
   items: Todo[] = [];
   isDragging = false;
+  todos$: Observable<Todo[]> = this.store.select(selectTodos);
+  nonActiveItems$: Observable<Todo[]> = this.store.select(selectNonActiveTodos);
+  activeItems$: Observable<Todo[]> = this.store.select(selectActiveTodos);
 
   constructor(private todoService: TodoService,
-              private authService: AuthService)
+              private store: Store<IAppState>)
   { }
 
   ngOnInit() {
-    //this.fetchTodos();
     this.fetchUserTodos();
+    this.todos$.subscribe((todos) =>
+      {
+        console.log(todos);
+        this.items = todos;
+      }
+    );
   }
 
-  /*fetchTodos(){
-    this.todoService.getTodos()
-      .subscribe((data) => this.items=data);
-  }*/
+  // fetchUserTodos(){
+  //   const userId = this.authService.getUser('_id');
+  //   this.todoService.getUserTodos(Number(userId))
+  //     .subscribe((data) => this.items=data);
+  // }
 
-  fetchUserTodos(){
-    const userId = this.authService.getUser('_id');
-    this.todoService.getUserTodos(Number(userId))
-      .subscribe((data) => this.items=data);
+  fetchUserTodos() {
+    this.store.dispatch(getTodos());
   }
 
-  get nonActiveItems(){
-    return this.items.filter((item) => !item.isDone);
-  }
-
-  get activeItems(){
-    return this.items.filter((item) => item.isDone);
-  }
-
-  addTodo(title: string){
-    const userId = this.authService.getUser('_id');
-    this.todoService.addTodo(title, Number(userId))
-      .subscribe(() => {
-        //this.fetchTodos();
-        this.fetchUserTodos();
-      });
+  addTodo(title: string) {
+    // this.todoService.addTodo(title)
+    //   .subscribe(() => {
+    //     this.fetchUserTodos();
+    //   });
+    this.store.dispatch(addTodo({ title }))
+    //this.fetchUserTodos();
     this.name="";
   }
 
-  drop(event: CdkDragDrop<Todo[]>){
+  drop(event: CdkDragDrop<Todo[]>) {
     const item = event.item.data;
 
     if (event.previousContainer === event.container) {
       return;
     }
-    transferArrayItem(event.previousContainer.data,
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex);
-    this.todoService.toggleActivity(item._id, !item.isDone)
-      .subscribe(() => {
-        //this.fetchTodos();
-        this.fetchUserTodos();
-      });
+    // this.todoService.toggleActivity(item._id, !item.isDone)
+    //   .subscribe(() => {
+    //     this.fetchUserTodos();
+    //   });
+
+    this.store.dispatch(toggleActivity({ id: item._id }));
+    //this.fetchUserTodos();
   }
 
-  removeDropItem(event: CdkDragDrop<Todo[]>){
+  removeDropItem(event: CdkDragDrop<Todo[]>) {
     const item = event.item.data;
 
-    this.todoService.removeTodo(item._id)
-      .subscribe(() => {
-        //this.fetchTodos();
-        this.fetchUserTodos();
-      });
+    // this.todoService.removeTodo(item._id)
+    //   .subscribe(() => {
+    //     this.fetchUserTodos();
+    //   });
+
+    this.store.dispatch(removeTodo({id: item._id}));
+    //this.fetchUserTodos();
   }
 
   dragStarted(event: CdkDragStart) {
