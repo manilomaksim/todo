@@ -8,6 +8,9 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Subject} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CreateArticle} from '../../../../interfaces/blog/create-article.interface';
+import {Store} from '@ngrx/store';
+import {IAppState} from '../../../../store/state/app.state';
+import {addArticle} from '../../../../store/actions/blog.actions';
 
 @Component({
   selector: 'app-blog-dialog',
@@ -29,7 +32,9 @@ export class BlogDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private authService: AuthService,
               private blogService: BlogService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private store: Store<IAppState>
+             ) {
   }
 
   ngOnInit(): void {
@@ -41,10 +46,14 @@ export class BlogDialogComponent implements OnInit {
     const tags = this.tags;
     const { title, text } = this.articleForm.getRawValue();
     const article: CreateArticle = { title, text, tags, userId };
-    this.blogService.addArticle(article)
-      .subscribe(() => {
-        this.onSuccess$.next();
-      });
+
+    // this.blogService.addArticle(article)
+    //   .subscribe(() => {
+    //     this.onSuccess$.next();
+    //   });
+
+    this.store.dispatch(addArticle({ article }))
+
     this.articleForm.reset();
     this.dialogRef.close(this.articleForm.value);
   }

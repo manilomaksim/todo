@@ -26,7 +26,6 @@ export class TodoService {
   }
 
   getCurrentUserTodos(): Observable<Todo[]> {
-    //throw 'This is error';
     const userId = this.authService.getUser('_id') as string;
     return this.getUserTodos(userId);
   }

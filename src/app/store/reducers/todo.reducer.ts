@@ -2,7 +2,7 @@ import {Action, createReducer, on} from '@ngrx/store';
 import {initialTodoState, ITodoState} from '../state/todo.state';
 import {
   addTodoError,
-  addTodoSuccess, getTodosError,
+  addTodoSuccess,
   getTodosSuccess, removeTodoError, removeTodoSuccess,
   toggleActivity,
   toggleActivityError, toggleActivitySuccess

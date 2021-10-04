@@ -10,10 +10,6 @@ export const getTodosSuccess = createAction(
   props<{ todos: Todo[] }>()
 )
 
-export const getTodosError = createAction(
-  '[Todos] Get Todos Error'
-)
-
 export const toggleActivity = createAction(
   '[Todo] ToggleActivity Todo',
   props<{ id: string }>()

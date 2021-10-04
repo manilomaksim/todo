@@ -1,17 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {TodoService} from '../../shared/services/todo.service';
-import {catchError, map, mergeMap, switchMap, take, tap} from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap, take} from 'rxjs/operators';
 import {
   addTodo, addTodoError, addTodoSuccess,
   getTodos,
-  getTodosError,
   getTodosSuccess, removeTodo, removeTodoError, removeTodoSuccess,
   toggleActivity,
   toggleActivityError,
   toggleActivitySuccess
 } from '../actions/todo.actions';
-import {EMPTY, of} from 'rxjs';
+import {of} from 'rxjs';
 import {IAppState} from '../state/app.state';
 import {Store} from '@ngrx/store';
 import {getTodoById} from '../selectors/todo.selector';
@@ -31,9 +30,6 @@ export class TodoEffects {
     this.actions$.pipe(
       ofType(addTodo),
       mergeMap((todo) => {
-        if(!todo) {
-          throw Error('Error!!!');
-        }
         return this.todoService.addTodo(todo.title).pipe(
           map((res) => addTodoSuccess({ todo: res.newTodo })),
           catchError((todo) => {

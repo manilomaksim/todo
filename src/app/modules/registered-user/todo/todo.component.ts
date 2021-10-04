@@ -40,23 +40,12 @@ export class TodoComponent implements OnInit{
     );
   }
 
-  // fetchUserTodos(){
-  //   const userId = this.authService.getUser('_id');
-  //   this.todoService.getUserTodos(Number(userId))
-  //     .subscribe((data) => this.items=data);
-  // }
-
   fetchUserTodos() {
     this.store.dispatch(getTodos());
   }
 
   addTodo(title: string) {
-    // this.todoService.addTodo(title)
-    //   .subscribe(() => {
-    //     this.fetchUserTodos();
-    //   });
     this.store.dispatch(addTodo({ title }))
-    //this.fetchUserTodos();
     this.name="";
   }
 
@@ -66,25 +55,12 @@ export class TodoComponent implements OnInit{
     if (event.previousContainer === event.container) {
       return;
     }
-    // this.todoService.toggleActivity(item._id, !item.isDone)
-    //   .subscribe(() => {
-    //     this.fetchUserTodos();
-    //   });
-
     this.store.dispatch(toggleActivity({ id: item._id }));
-    //this.fetchUserTodos();
   }
 
   removeDropItem(event: CdkDragDrop<Todo[]>) {
     const item = event.item.data;
-
-    // this.todoService.removeTodo(item._id)
-    //   .subscribe(() => {
-    //     this.fetchUserTodos();
-    //   });
-
     this.store.dispatch(removeTodo({id: item._id}));
-    //this.fetchUserTodos();
   }
 
   dragStarted(event: CdkDragStart) {

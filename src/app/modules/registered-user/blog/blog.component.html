@@ -5,16 +5,16 @@
         [infiniteScrollDistance]="0.5"
         [infiniteScrollUpDistance]="9.5"
         [infiniteScrollThrottle]="150"
-        [infiniteScrollDisabled]="!hasNextPage"
+        [infiniteScrollDisabled]="!(hasNextPage$ | async)"
         (scrolled)="onScrollDown()"
     >
-      <blog-item-comp *ngFor="let article of articles"
+      <blog-item-comp *ngFor="let article of (articles$ | async)"
                       [article]="article">
       </blog-item-comp>
     </ul>
   </div>
   <div class="articles__total-count">
-    <p>Articles: {{articles.length}}/{{totalCount}}</p>
+    <p>Articles: {{(articles$ | async)?.length}}/{{(totalCount$ | async)}}</p>
   </div>
   <div class="articles__fab">
     <button mat-fab color="warn"

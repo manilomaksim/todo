@@ -7,6 +7,7 @@ import {GetArticlesRes} from '../../interfaces/blog/get-articles-res.interface';
 import {PostArticlesRes} from '../../interfaces/blog/post-articles-res.interface';
 import {CreateArticle} from '../../interfaces/blog/create-article.interface';
 import {GetArticleRes} from '../../interfaces/blog/get-article-res.interface';
+import {Pagination} from '../../interfaces/blog/pagination.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,28 @@ export class BlogService {
 
   getArticles(skip: number, limit: number): Observable<GetArticlesRes>{
     const params = { skip, limit };
-
     return this.http.get<GetArticlesRes>(this.URL, { params });
   }
 
-  getArticle(id: number): Observable<Article>{
+  // getCurrentArticles(skip: number, limit: number): Observable<Article[]>{
+  //   return this.getArticles(skip, limit).pipe(
+  //     map((data) => data.articles)
+  //   );
+  // }
+
+  // getPagination(skip: number, limit: number): Observable<Pagination>{
+  //   return this.getArticles(skip, limit).pipe(
+  //     map((data) =>  {
+  //       return {
+  //         skipped: data.skipped,
+  //         totalCount: data.totalCount,
+  //         hasNextPage: data.hasNextPage
+  //       };
+  //     })
+  //   );
+  // }
+
+  getArticle(id: string): Observable<Article>{
     const url = this.URL + "/" + id;
     return this.http.get<GetArticleRes>(url).pipe(
       map((data: GetArticleRes) => data.article));
