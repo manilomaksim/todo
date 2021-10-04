@@ -1,5 +1,5 @@
 export interface Pagination {
-  skipped: number,
+  skip: number,
   totalCount: number,
   limit: number,
   hasNextPage: boolean

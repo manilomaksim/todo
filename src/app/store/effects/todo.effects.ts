@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {TodoService} from '../../shared/services/todo.service';
-import {catchError, map, mergeMap, switchMap, take} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { TodoService } from '../../shared/services/todo.service';
+import { catchError, map, mergeMap, switchMap, take } from 'rxjs/operators';
 import {
   addTodo, addTodoError, addTodoSuccess,
   getTodos,
@@ -10,10 +10,10 @@ import {
   toggleActivityError,
   toggleActivitySuccess
 } from '../actions/todo.actions';
-import {of} from 'rxjs';
-import {IAppState} from '../state/app.state';
-import {Store} from '@ngrx/store';
-import {getTodoById} from '../selectors/todo.selector';
+import { of } from 'rxjs';
+import { IAppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
+import { getTodoById } from '../selectors/todo.selector';
 
 @Injectable()
 export class TodoEffects {

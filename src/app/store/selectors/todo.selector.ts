@@ -1,5 +1,5 @@
-import {createSelector} from '@ngrx/store';
-import {IAppState} from '../state/app.state';
+import { createSelector } from '@ngrx/store';
+import { IAppState } from '../state/app.state';
 
 export const selectTodosState = (state: IAppState) => state.todos;
 

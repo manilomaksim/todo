@@ -1,22 +1,14 @@
-import {createAction, props} from '@ngrx/store';
-import {Article} from '../../interfaces/blog/article.interface';
-import {GetArticlesRes} from '../../interfaces/blog/get-articles-res.interface';
-import {CreateArticle} from '../../interfaces/blog/create-article.interface';
-import {Pagination} from '../../interfaces/blog/pagination.interface';
+import { createAction, props } from '@ngrx/store';
+import { Article } from '../../interfaces/blog/article.interface';
+import { CreateArticle } from '../../interfaces/blog/create-article.interface';
 
 export const getArticles = createAction(
-  '[Articles] Get Articles',
-  // props<{ skip: number, limit: number }>()
+  '[Articles] Get Articles'
 )
-
-// export const getArticlesResSuccess = createAction(
-//   '[GetArticlesRes] Get Articles Res Success',
-//   props<{ getArticlesRes: GetArticlesRes }>()
-// )
 
 export const getArticlesResSuccess = createAction(
   '[GetArticlesRes] Get Articles Res Success',
-  props<{ articles: Article[], skipped: number, totalCount: number, hasNextPage: boolean }>()
+  props<{ articles: Article[], totalCount: number, hasNextPage: boolean }>()
 )
 
 export const getArticle = createAction(

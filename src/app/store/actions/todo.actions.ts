@@ -1,5 +1,5 @@
-import {createAction, props} from '@ngrx/store';
-import {Todo} from '../../interfaces/todo/todo.interface';
+import { createAction, props } from '@ngrx/store';
+import { Todo } from '../../interfaces/todo/todo.interface';
 
 export const getTodos = createAction(
   '[Todos] Get Todos'
