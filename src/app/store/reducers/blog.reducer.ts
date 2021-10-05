@@ -9,10 +9,18 @@ import {
 const _blogReducer = createReducer(
   initialBlogState,
   on(getArticlesResSuccess, (state, { articles, totalCount, hasNextPage }) => {
+    const { skip, limit } = state.pagination;
+
     return {
       ...state,
       articles: [...state.articles, ...articles],
-      pagination: { skip: state.pagination.skip + state.pagination.limit, totalCount, limit: state.pagination.limit, hasNextPage } };
+      pagination: {
+        totalCount,
+        hasNextPage,
+        limit,
+        skip: skip + limit,
+      }
+    };
   }),
   on(getArticleSuccess, (state, { article }) => {
     return { ...state, article };

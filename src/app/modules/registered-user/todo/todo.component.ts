@@ -1,17 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {Todo} from '../../../interfaces/todo/todo.interface';
-import {TodoService} from '../../../shared/services/todo.service';
+import { Component, OnInit } from '@angular/core';
+import { Todo } from '../../../interfaces/todo/todo.interface';
 import {
   CdkDragDrop, CdkDragEnd,
-  CdkDragStart,
-  transferArrayItem
+  CdkDragStart
 } from '@angular/cdk/drag-drop';
-import {AuthService} from '../../../shared/services/auth.service';
-import {select, Store} from '@ngrx/store';
-import {selectActiveTodos, selectNonActiveTodos, selectTodos} from '../../../store/selectors/todo.selector';
-import {addTodo, getTodos, getTodosSuccess, removeTodo, toggleActivity} from '../../../store/actions/todo.actions';
-import {Observable} from 'rxjs';
-import {IAppState} from '../../../store/state/app.state';
+import { Observable } from 'rxjs';
+import { TodoSandboxService } from '../../../shared/facades/todo-sandbox.service';
 
 @Component({
   selector: "todo-comp",
@@ -22,45 +16,38 @@ export class TodoComponent implements OnInit{
   name = "";
   items: Todo[] = [];
   isDragging = false;
-  todos$: Observable<Todo[]> = this.store.select(selectTodos);
-  nonActiveItems$: Observable<Todo[]> = this.store.select(selectNonActiveTodos);
-  activeItems$: Observable<Todo[]> = this.store.select(selectActiveTodos);
 
-  constructor(private todoService: TodoService,
-              private store: Store<IAppState>)
+  todos$: Observable<Todo[]> = this.todoSandbox.todos$;
+  nonActiveItems$: Observable<Todo[]> = this.todoSandbox.nonActiveItems$;
+  activeItems$: Observable<Todo[]> = this.todoSandbox.activeItems$;
+
+  constructor(private todoSandbox: TodoSandboxService)
   { }
 
   ngOnInit() {
     this.fetchUserTodos();
-    this.todos$.subscribe((todos) =>
-      {
-        console.log(todos);
-        this.items = todos;
-      }
-    );
   }
 
   fetchUserTodos() {
-    this.store.dispatch(getTodos());
+    this.todoSandbox.getUserTodos();
   }
 
   addTodo(title: string) {
-    this.store.dispatch(addTodo({ title }))
+    this.todoSandbox.addTodo(title);
     this.name="";
   }
 
-  drop(event: CdkDragDrop<Todo[]>) {
+  dropTodo(event: CdkDragDrop<Todo[]>) {
     const item = event.item.data;
-
     if (event.previousContainer === event.container) {
       return;
     }
-    this.store.dispatch(toggleActivity({ id: item._id }));
+    this.todoSandbox.toggleActivity(item._id);
   }
 
-  removeDropItem(event: CdkDragDrop<Todo[]>) {
+  removeDropTodo(event: CdkDragDrop<Todo[]>) {
     const item = event.item.data;
-    this.store.dispatch(removeTodo({id: item._id}));
+    this.todoSandbox.removeTodo(item._id);
   }
 
   dragStarted(event: CdkDragStart) {

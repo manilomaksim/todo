@@ -19,11 +19,11 @@ export const selectArticlesPagination = createSelector(
 );
 
 export const selectTotalCount = createSelector(
-  selectBlogState,
-  (state) => state.pagination.totalCount
+  selectArticlesPagination,
+  (state) => state.totalCount
 )
 
 export const selectHasNextPage = createSelector(
-  selectBlogState,
-  (state) => state.pagination.hasNextPage
+  selectArticlesPagination,
+  (state) => state.hasNextPage
 )

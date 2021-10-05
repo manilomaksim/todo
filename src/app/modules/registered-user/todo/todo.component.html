@@ -4,7 +4,7 @@
 <ul class="todo__list"
     cdkDropList
     [cdkDropListData]="items"
-    (cdkDropListDropped)="drop($event)"
+    (cdkDropListDropped)="dropTodo($event)"
 >
   <todoItem-comp *ngFor="let item of nonActiveItems$ | async"
                  [item]="item"
@@ -35,7 +35,7 @@
 <ul class="todo__list"
     cdkDropList
     [cdkDropListData]="items"
-    (cdkDropListDropped)="drop($event)"
+    (cdkDropListDropped)="dropTodo($event)"
 >
   <todoItem-comp *ngFor="let item of activeItems$ | async"
                  [item]="item"
@@ -50,7 +50,7 @@
   </div>
   <div class="todo__trash"
        cdkDropList
-       (cdkDropListDropped)="removeDropItem($event)">
+       (cdkDropListDropped)="removeDropTodo($event)">
     <mat-icon *ngIf="isDragging"
               class="todo__trash-icon"
               aria-hidden="false">delete

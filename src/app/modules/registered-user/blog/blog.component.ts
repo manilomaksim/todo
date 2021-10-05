@@ -2,15 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../interfaces/blog/article.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { BlogDialogComponent } from './blog-dialog/blog-dialog.component';
-import { AuthService } from '../../../shared/services/auth.service';
-import { BlogService } from '../../../shared/services/blog.service';
 import { take } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { IAppState } from '../../../store/state/app.state';
-import { getArticles } from '../../../store/actions/blog.actions';
 import { Observable } from 'rxjs';
-import { selectArticles, selectHasNextPage, selectTotalCount }
-  from '../../../store/selectors/blog.selector';
+import { BlogSandboxService } from '../../../shared/facades/blog-sandbox.service';
 
 @Component({
   selector: 'blog-comp',
@@ -23,14 +17,12 @@ export class BlogComponent implements OnInit {
   text: string = "";
   tags: string[] = [];
 
-  articles$: Observable<Article[]> = this.store.select(selectArticles);
-  totalCount$: Observable<number> = this.store.select(selectTotalCount);
-  hasNextPage$: Observable<boolean> = this.store.select(selectHasNextPage);
+  articles$: Observable<Article[]> = this.blogSandbox.articles$;
+  totalCount$: Observable<number> = this.blogSandbox.totalCount$;
+  hasNextPage$: Observable<boolean> = this.blogSandbox.hasNextPage$;
 
   constructor(public dialog: MatDialog,
-              private authService: AuthService,
-              private blogService: BlogService,
-              private store: Store<IAppState>
+              private blogSandbox: BlogSandboxService
               ) { }
 
   ngOnInit(): void {
@@ -38,7 +30,7 @@ export class BlogComponent implements OnInit {
   }
 
   fetchArticles(){
-    this.store.dispatch(getArticles());
+    this.blogSandbox.getNextPage();
   }
 
   openDialog(): void {
